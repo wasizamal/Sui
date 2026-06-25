@@ -2243,7 +2243,7 @@ window.onWeglotReady = function(callback) {
 
   function loadWeglot() {
     var s = document.createElement('script');
-    s.src = 'assets/js/weglot.min.js';
+    s.src = '/assets/js/weglot.min.js';
     s.onload = function() {
       Weglot.initialize({
         api_key: 'wg_21979a474a72deff1ecb6ebc4ba9edb93',
@@ -2272,8 +2272,8 @@ window.onWeglotReady = function(callback) {
   
   (function() {
     var src = window.location.host.includes("webflow.io")
-      ? "assets/js/17378.js"
-      : "assets/js/17378_1.js";
+      ? "/assets/js/17378.js"
+      : "/assets/js/17378_1.js";
     var s = document.createElement('script');
     s.src = src;
     s.type = 'module';
