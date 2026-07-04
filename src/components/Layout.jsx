@@ -9,7 +9,7 @@ function Layout() {
 
   // Scroll to top on route change
   useEffect(() => {
-    if (window.lenis) {
+    if (window.lenis && typeof window.lenis.scrollTo === 'function') {
       window.lenis.scrollTo(0, { immediate: true });
     } else {
       window.scrollTo(0, 0);
@@ -70,7 +70,7 @@ function Layout() {
 
       modal.classList.add('active');
       document.body.style.overflow = 'hidden';
-      if (window.lenis) window.lenis.stop();
+      if (window.lenis && typeof window.lenis.stop === 'function') window.lenis.stop();
 
       setTimeout(() => {
         const firstInput = modal.querySelector('input, select, textarea');
@@ -110,7 +110,7 @@ function Layout() {
         if (location.pathname !== '/') {
           navigate('/');
         } else {
-          if (window.lenis) {
+          if (window.lenis && typeof window.lenis.scrollTo === 'function') {
             window.lenis.scrollTo(0, { duration: 1.0 });
           } else {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -123,7 +123,7 @@ function Layout() {
         } else {
           const targetEl = document.querySelector(targetHash);
           if (targetEl) {
-            if (window.lenis) {
+            if (window.lenis && typeof window.lenis.scrollTo === 'function') {
               window.lenis.scrollTo(targetEl, { duration: 1.2 });
             } else {
               targetEl.scrollIntoView({ behavior: 'smooth' });

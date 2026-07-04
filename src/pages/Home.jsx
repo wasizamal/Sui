@@ -22,7 +22,7 @@ function Home() {
     if (window.ScrollTrigger) {
       window.ScrollTrigger.getAll().forEach(t => t.kill());
     }
-    if (window.lenis) {
+    if (window.lenis && typeof window.lenis.destroy === 'function') {
       window.lenis.destroy();
       window.lenis = null;
     }
@@ -38,7 +38,7 @@ function Home() {
       setTimeout(() => {
         const target = document.querySelector(location.hash);
         if (target) {
-          if (window.lenis) {
+          if (window.lenis && typeof window.lenis.scrollTo === 'function') {
             window.lenis.scrollTo(target, { duration: 1.2 });
           } else {
             target.scrollIntoView({ behavior: 'smooth' });
@@ -56,7 +56,7 @@ function Home() {
       if (window.ScrollTrigger) {
         window.ScrollTrigger.getAll().forEach(t => t.kill());
       }
-      if (window.lenis) {
+      if (window.lenis && typeof window.lenis.destroy === 'function') {
         window.lenis.destroy();
         window.lenis = null;
       }
