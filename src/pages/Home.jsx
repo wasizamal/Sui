@@ -27,11 +27,24 @@ function Home() {
       window.lenis = null;
     }
 
-    // 3. Dynamically inject the homepage-specific slater animation script
-    const script = document.createElement('script');
-    script.src = '/assets/js/slater/50689.js';
-    script.id = 'home-slater-script';
-    document.body.appendChild(script);
+    // 3. Dynamically inject the homepage-specific slater animation script once dependencies are resolved
+    const injectScript = () => {
+      const script = document.createElement('script');
+      script.src = '/assets/js/slater/50689.js';
+      script.id = 'home-slater-script';
+      document.body.appendChild(script);
+    };
+
+    if (window.Lenis && window.gsap && window.ScrollTrigger) {
+      injectScript();
+    } else {
+      const interval = setInterval(() => {
+        if (window.Lenis && window.gsap && window.ScrollTrigger) {
+          clearInterval(interval);
+          injectScript();
+        }
+      }, 50);
+    }
 
     // 4. If URL has a hash, scroll to target section after animation initialises
     if (location.hash) {
